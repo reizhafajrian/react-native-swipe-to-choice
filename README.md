@@ -15,7 +15,7 @@ import SwipeToChoice from "react-native-swipe-to-choice";
 
 // ...
 
-const result = await SwipeToChoice.multiply(3, 7);
+
 ```
 
 ## Contributing
