@@ -34,7 +34,10 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "swipe to choose",
+    "swipe card",
+    "swipe to delete"
   ],
   "repository": "https://github.com/reizhafajrian/react-native-swipe-to-choice",
   "author": "reizha <reizha77@gmail.com> (https://github.com/reizhafajrian)",

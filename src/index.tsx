@@ -1,8 +1,5 @@
-import React, { useRef } from 'react';
-
+import * as React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
   View,
   Animated,
   PanResponder,
@@ -10,17 +7,21 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/Feather';
 
 interface props {
-  children?: JSX.Element[] | JSX.Element;
+  children?:
+    | JSX.Element
+    | JSX.Element[]
+    | React.Component
+    | React.Component[]
+    | any;
   styleButtonRight?: ViewStyle;
   styleButtonLeft?: ViewStyle;
   containerStyle?: ViewStyle;
   buttonRight?: JSX.Element[] | JSX.Element;
   buttonLeft?: JSX.Element[] | JSX.Element;
-  onPressRight?: () => void;
-  onPressLeft?: () => void;
+  onPressRight: () => void;
+  onPressLeft: () => void;
   activeSwipeChoose?: boolean;
 }
 
@@ -35,7 +36,7 @@ const SwipeToChoice = ({
   buttonLeft = <Text>Delete</Text>,
   activeSwipeChoose = true,
 }: props): JSX.Element => {
-  const pan = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+  const pan = React.useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
   const SpringAnimated = (x: number, y: number) => {
     Animated.spring(pan, {
       toValue: { x: x, y: y },
@@ -43,14 +44,14 @@ const SwipeToChoice = ({
       bounciness: 1,
     }).start();
   };
-
   const panResponder = () => {
     return PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: (event, gesture: any) => {
+      onPanResponderMove: (event: any, gesture: any) => {
         if (gesture.dx < 101 && gesture.dx > -104) {
           pan.setValue({ x: gesture.dx, y: 0 });
         }
+        event.preventDefault();
       },
       onPanResponderRelease: (event, gesture: any) => {
         if (gesture.dx > 30) {
@@ -62,6 +63,7 @@ const SwipeToChoice = ({
         } else {
           SpringAnimated(0, 0);
         }
+        event.preventDefault();
       },
     });
   };
@@ -69,27 +71,25 @@ const SwipeToChoice = ({
   return (
     <>
       <View>
-        <View style={styles.buttonContainer(children?.props.style.height)}>
+        <View style={styles().buttonContainer(children?.props.style.height)}>
           <TouchableOpacity
             activeOpacity={1}
             onPress={onPressLeft}
             style={[
-              styles.leftButtonContainer(children?.props.style.height),
+              styles().leftButtonContainer(children?.props.style.height),
               styleButtonLeft,
             ]}
           >
-            {/* <Icon name={'trash'} size={25} color={'white'} /> */}
             {buttonLeft}
           </TouchableOpacity>
           <TouchableOpacity
             style={[
-              styles.rightButtonContainer(children?.props.style.height),
+              styles().rightButtonContainer(children?.props.style.height),
               styleButtonRight,
             ]}
             onPress={onPressRight}
             activeOpacity={1}
           >
-            {/* <Icon name={'check'} size={25} color={'white'} /> */}
             {buttonRight}
           </TouchableOpacity>
         </View>
@@ -111,7 +111,10 @@ const SwipeToChoice = ({
               SpringAnimated(0, 0);
             }}
             activeOpacity={1}
-            style={[styles.button(children.props.style.height), containerStyle]}
+            style={[
+              styles().button(children?.props.style.height),
+              containerStyle,
+            ]}
           >
             <>{children}</>
           </TouchableOpacity>
@@ -121,15 +124,12 @@ const SwipeToChoice = ({
   );
 };
 
-const styles = StyleSheet.create({
+const styles: any = () => ({
   button: (height = 55) => ({
     width: '100%',
     height: height,
     backgroundColor: 'yellow',
   }),
-  backgroundStyle: {
-    flex: 1,
-  },
   buttonContainer: (height = 55) => ({
     position: 'absolute',
     height: height,
