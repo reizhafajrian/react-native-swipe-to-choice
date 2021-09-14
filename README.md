@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 
 ```
 
-##props
+## props
 default is true,false is used when you don't want to call the function when the swipe occurs
 ```sh
   activeSwipeChoose={false} //
