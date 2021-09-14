@@ -10,7 +10,7 @@ export default function App() {
         styleButtonRight={{ backgroundColor: 'blue' }}
         onPressRight={() => alert('function right active')}
         onPressLeft={() => alert('function left active')}
-        activeSwipeChoose={false}
+        activeSwipeChoose={true}
         buttonRight={
           <View
             style={{
