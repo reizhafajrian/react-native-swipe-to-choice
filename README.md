@@ -9,9 +9,13 @@ npm install react-native-swipe-to-choice
 ```
 
 
-## Results
+## Example with activeSwipeChoose is false
 
-![alt text](https://github.com/reizhafajrian/react-native-swipe-to-choice/tree/master/gif/Sep-14-2021-16-17-59.gif "Example")
+
+![alt text](https://github.com/reizhafajrian/react-native-swipe-to-choice/blob/master/gif/Sep-14-202-16-17-59.gif "Example with activeSwipeChoose is false")
+
+## Example with activeSwipeChoose is true
+![alt text](https://github.com/reizhafajrian/react-native-swipe-to-choice/blob/master/gif/Sep-14-2021-16-18-12.gif "Example with activeSwipeChoose is false")
 
 ## Usage
 
